@@ -1,0 +1,124 @@
+<div *ngIf="singleCountryInfo">
+
+  <div class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" [src]="singleCountryInfo[0].flag" alt="First slide" style="height: 30rem;">
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <br>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card border-dark mb-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].name">
+              <h6>Country Name: {{singleCountryInfo[0].name}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].capital">
+              <h6>Capital city: {{singleCountryInfo[0].capital}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].region">
+              <h6>Region: {{singleCountryInfo[0].region}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].subregion">
+              <h6>Sub Region: {{singleCountryInfo[0].subregion}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].languages">
+              <h6>Languages:
+                <span *ngFor="let language of singleCountryInfo[0].languages; let i = last">
+                  <a [routerLink]="['/all-countries/' + singleCountryInfo[0].region]" [queryParams]="{ 'language' : language.iso639_1, 'name' : language.name}">{{language.name}} </a>{{i ? "" : ","}} </span>
+                <br>
+              </h6>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card border-dark mb-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].latlng[0]">
+              <h6>Latitude: {{singleCountryInfo[0].latlng[0]}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].latlng[1]">
+              <h6>Longitude: {{singleCountryInfo[0].latlng[1]}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].area">
+              <h6>Area: {{singleCountryInfo[0].area}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].population">
+              <h6>Population: {{singleCountryInfo[0].population}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].currencies">
+              <h6>Currencies:
+                <span *ngFor="let currency of singleCountryInfo[0].currencies; let i = last">
+                  <a [routerLink]="['/all-countries/' + singleCountryInfo[0].region]" [queryParams]="{ 'currency' : currency.code, 'name' : currency.name}">{{currency.name}} </a>{{i ? "" : ","}} </span>
+                <br>
+              </h6>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card border-dark mb-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].topLevelDomain">
+              <h6>Top level domain: {{singleCountryInfo[0].topLevelDomain}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].alpha2Code">
+              <h6>alpha2Code: {{singleCountryInfo[0].alpha2Code}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].alpha3Code">
+              <h6>alpha3Code: {{singleCountryInfo[0].alpha3Code}}</h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].callingCodes">
+              <h6>Calling codes:
+                <span *ngFor="let code of singleCountryInfo[0].callingCodes; let i = last">{{code}}{{i ? "" : ","}}</span>
+                <br>
+              </h6>
+
+            </li>
+            <li class="list-group-item" *ngIf="singleCountryInfo[0].timezones">
+              <h6>Time zones:
+                <span *ngFor="let time of singleCountryInfo[0].timezones">{{time}}
+
+                </span>
+                <br>
+              </h6>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <button class="btn btn-outline-dark" (click)="goback()">Go back</button>
+  </div>

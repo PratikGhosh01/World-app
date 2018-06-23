@@ -1,0 +1,88 @@
+<br>
+<div class="container">
+  <div class="row">
+
+
+    <div class="input-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="input-group-prepend" style="margin-right: 0.2vw;">
+        <label class="input-group-text" for="sort">Region Name</label>
+      </div>
+      <select [(ngModel)]="regionSelected" (ngModelChange)='regionSelect($event)' name="regionSelected" class="form-control">
+        <option value="africa">Africa</option>
+        <option value="americas">Americas</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
+      </select>
+    </div>
+
+
+
+    <div class="input-group col-xs-12 col-sm-12 col-md-5 col-lg-5">
+      <div class="input-group-prepend" style="margin-right: 0.2vw;">
+        <label class="input-group-text" for="sort">Sub Region Name</label>
+      </div>
+      <select [(ngModel)]="subregionSelected" (ngModelChange)='subregionSelect($event)' name="subregionSelected2" class="form-control">
+        <option value="South America">South america</option>
+        <option value="Northern America">Northern America</option>
+        <option value="Central America">Central America</option>
+        <option value="Caribbean">Caribbean(Americas)</option>
+        <option value="Northern Africa">Northern Africa</option>
+        <option value="Middle Africa">Middle Africa</option>
+        <option value="Western Africa">Western Africa</option>
+        <option value="Southern Africa">Southern Africa</option>
+        <option value="Eastern Africa">Eastern Africa</option>
+        <option value="Southern Asia">Southern Asia</option>
+        <option value="Western Asia">Western Asia</option>
+        <option value="South-Eastern Asia">South-Eastern Asia</option>
+        <option value="Eastern Asia">Eastern Asia</option>
+        <option value="Central Asia">Central Asia</option>
+        <option value="Northern Europe">Northern Europe</option>
+        <option value="Southern Europe">Southern Europe</option>
+        <option value="Western Europe">Western Europe</option>
+        <option value="Eastern Europe">Eastern Europe</option>
+        <option value="Polynesia">Polynesia(Oceania)</option>
+        <option value="Australia and New Zealand">Australia and New Zealand(Oceania)</option>
+        <option value="Melanesia">Melanesia(Oceania)</option>
+        <option value="Micronesia">Micronesia(Oceania)</option>
+
+      </select>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <button class="btn btn-outline-dark" (click)="goback()">Go back</button>
+    </div>
+
+    <div class="row" id="contentCards" style="text-align:center">
+      <div *ngFor="let country of allCountries" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+
+
+        <div class="card border-info mb-3">
+          <img class="card-img-top" [src]="country.flag" alt="Card image cap">
+          <div class="card-body ">
+            <h5 class="card-title">{{country.name}}</h5>
+            <div class="card-text">
+              <p>
+                Capital : {{country.capital}}</p>
+              <p>
+                SubRegion:
+                <span>{{country.subregion}}</span>
+              </p>
+              <p>
+                Currency :
+                <span *ngFor="let currency of country.currencies; let i = last">
+                  <a [routerLink]="['/all-countries/' + country.region]" [queryParams]="{ 'currency' : currency.code, 'name' : currency.name}">{{currency.name}} </a>{{i ? "" : ","}} </span>
+              </p>
+              <p>Languages :
+                <span *ngFor="let language of country.languages; let i = last">
+                  <a [routerLink]="['/all-countries/' + country.region]" [queryParams]="{ 'language' : language.iso639_1, 'name' : language.name}">{{language.name}} </a>{{i ? "" : ","}} </span>
+              </p>
+            </div>
+            <p>
+              <button [routerLink]="['/single-country', country.name]" class="btn btn-primary btn-block">See More..</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
